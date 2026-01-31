@@ -90,9 +90,15 @@ recognition.onresult=(event)=>{
 
 
  else if(message.includes("open calculator")){
-    speak (" ...opening calculator....")
-    window.open("calculator://")
- }
+    speak("opening calculator")
+
+    if(/Android/i.test(navigator.userAgent)){
+        window.location.href = "intent://com.android.calculator2/#Intent;scheme=android-app;package=com.android.calculator2;end";
+    } else {
+        window.open("calculator:");
+    }
+}
+
 
 
   else if(message.includes("time")){
@@ -111,5 +117,6 @@ recognition.onresult=(event)=>{
     speak(finalText)
     window.open(`https://www.google.com/search?q=${message.replace("Aarthi","")}`,"_blank")
  }
+
 
 }
